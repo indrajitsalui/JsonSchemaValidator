@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container>
+    <v-container >
       <v-row no-gutters>
         <v-col cols="12" md="6" class="pr-5" >
           <v-card  class=" jsonInputCard" outlined tile>
@@ -30,7 +30,7 @@
 
 <script>
 import CodeViewer from "../components/CodeViewer.vue";
-// import {Validator} from "jsonschema";
+
 export default {
   components: { CodeViewer },
   data: () => ({
@@ -101,6 +101,9 @@ export default {
 <style scoped>
 .jsonInputCard{
   height: 70vh;
+}
+.pageBackGround{
+  color: #FFE5D9;
 }
 
 </style>
