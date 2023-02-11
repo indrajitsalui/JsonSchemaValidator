@@ -1,17 +1,41 @@
 <template>
   <div>
     <v-container >
+      <v-row justify="end">
+        <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+            <v-spacer/>
+        <v-col justify="end">
+        <v-btn @click="swap">
+          <v-icon class ="title">
+            mdi-invert-colors
+          </v-icon>
+        </v-btn>
+      </v-col>
+      </v-row>
       <v-row no-gutters>
-        <v-col cols="12" md="6" class="pr-5" >
+        <v-col cols="12" md="6" class="pa-5 text-center"  >
           <v-card  class=" jsonInputCard" outlined tile>
+           Enter the Json Schema below
             <CodeViewer :code="jsonSchema" />
           </v-card>
         </v-col>
 
-        <v-col cols="12" md="6" class="pl-5" >
-          <v-card  class=" jsonInputCard" outlined tile>
+          <v-col cols="12" md="6" class="pa-5 text-center" >
+          <v-card  class=" jsonInputCard " outlined tile>
+            Enter the Json input below
             <CodeViewer :code="jsonInput"  />
           </v-card>
+
         </v-col>
       </v-row>
       <v-row>
@@ -26,6 +50,7 @@
       </v-row>
     </v-container>
   </div>
+
 </template>
 
 <script>
@@ -80,6 +105,24 @@ export default {
       }
       return isValid;
     },
+    computed: {
+    theme () {
+      return this.$vuetify.theme.isDark ? 'dark' : 'light'
+    }
+  },
+  touchAll () {
+      const value = this.$vuetify.theme.themes[this.theme]
+      this.$vuetify.theme.themes[this.theme] = {}
+      this.$vuetify.theme.themes[this.theme] = value
+    },
+
+    swap () {
+      this.$vuetify.theme.isDark = !this.$vuetify.theme.isDark
+
+      // necessary to reset colors after changing the theme, perhaps a Vuetify.js bug
+      this.touchAll(1)
+    }
+
   },
   watch: {
     "jsonSchema.value": {
@@ -102,8 +145,6 @@ export default {
 .jsonInputCard{
   height: 70vh;
 }
-.pageBackGround{
-  color: #FFE5D9;
-}
+
 
 </style>
