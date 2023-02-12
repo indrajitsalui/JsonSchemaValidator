@@ -51,9 +51,6 @@ export default {
   //   fallback: true, // Uses '404.html' instead of the default '200.html'
   // },
   target: 'static',
-  router: {
-    base: '/jsonschemavalidate/'
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
