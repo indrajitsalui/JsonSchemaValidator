@@ -43,7 +43,7 @@ export default {
 .my-editor {
   /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
   background: #264143;
-  /* color: #ccc; */
+  color: #ccc;
   
   /* you must provide font-family font-size line-height. Example: */
   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
