@@ -1,25 +1,54 @@
 <template>
   <div>
-    <v-container >
+    <v-container>
       <v-row no-gutters>
         <v-col cols="12" md="6" class="pr-5" >
-          <v-card  class=" jsonInputCard" outlined tile>
+          <v-card class="jsonInputCard" outlined tile>
+           
+            <div style="background: #132122; color: #e8ba55" class="text-center" >
+              <span> Enter Json schema below</span>
+            </div>
             <CodeViewer :code="jsonSchema" />
+           
+            <!-- <span style="background: #132122">Enter Json schema below</span>  -->
+            
           </v-card>
         </v-col>
 
-        <v-col cols="12" md="6" class="pl-5" >
-          <v-card  class=" jsonInputCard" outlined tile>
-            <CodeViewer :code="jsonInput"  />
+        <v-col cols="12" md="6" class="pl-5">
+          <v-card class="jsonInputCard" outlined tile>
+            <div style="background: #132122; color: #e8ba55" class="text-center" >
+              <span> Enter Json input below</span>
+            </div>
+            <CodeViewer :code="jsonInput" />
           </v-card>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" class="ma-auto">
-          <v-card class="pa-2" outlined tile>
-            Result : {{ errorMessage }}
-            Errors : <div v-for="(item,index) in validatorResult.errors" :key="index">
-              {{ item }}
+          <v-card class="pa-2" outlined tile color="codeEditor" height="15vh">
+            <div v-if="valid" style="color: #B9F6CA" >
+              <v-icon style="color: #B9F6CA"  > mdi-check-circle-outline </v-icon>
+              <span class="body-1">
+                Provided Json input is compatible with provided Json-Schema
+              </span>
+            </div>
+            
+            <div v-else>
+              <v-icon style="color: #FF5722" > mdi-alert-circle-outline</v-icon>
+              <span class="body-1"  style="color: #FF5722" >
+                Provided Json input is not compatible with provided Json-Schema
+              </span>
+              <!-- <br/> -->
+              <p>
+                <div v-for="(item, index) in validatorResult.errors" :key="index">
+                  <span class="body-1" style="color: #FF8A80">
+                    > {{ item }}
+                  </span>
+                  
+                </div>
+              </p>
+              <!-- Result : {{ errorMessage }} -->
             </div>
           </v-card>
         </v-col>
@@ -44,7 +73,7 @@ export default {
     },
     valid: true,
     errorMessage: "",
-    validatorResult:[],
+    validatorResult: [],
   }),
   methods: {
     validateJsonInput(jsonSchemaInput, jsonInput) {
@@ -73,7 +102,7 @@ export default {
       var isValid = false;
       try {
         this.validatorResult = v.validate(jsonInput, jsonSchemaInput);
-        isValid=this.validatorResult.valid;
+        isValid = this.validatorResult.valid;
         return isValid;
       } catch (e) {
         this.errorMessage = e.message;
@@ -99,11 +128,10 @@ export default {
 </script>
 
 <style scoped>
-.jsonInputCard{
+.jsonInputCard {
   height: 70vh;
 }
-.pageBackGround{
-  color: #FFE5D9;
-}
-
+/* .errorBoard{
+  font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+} */
 </style>
