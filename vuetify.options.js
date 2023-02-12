@@ -1,9 +1,6 @@
 export default {
   theme: {
-    options: {
-      customProperties: true
-    },
-    dark: true,
+    dark: false,
     themes: {
       dark: {
         primary: '#660708',
