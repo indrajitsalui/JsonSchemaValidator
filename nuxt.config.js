@@ -47,7 +47,13 @@ export default {
   vuetify: {
     optionsPath: './vuetify.options.js',
   },
-
+  // generate: {
+  //   fallback: true, // Uses '404.html' instead of the default '200.html'
+  // },
+  target: 'static',
+  router: {
+    base: '/'
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
